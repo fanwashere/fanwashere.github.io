@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,400' rel='stylesheet' type='text/css'>
+	<script src = "assets/jquery/jquery-1.11.1.min.js"></script>
+	<script src = "assets/jquery/jquery.color.js"></script>
+	<script src = "assets/scripts/metro.js"></script>
+	
+	<script type = "text/javascript">			
+		//Scrolls the target, takes ID anchors.
+		function scrollTo(target) {
+			scrolling = true;
+			$("html, body").animate({scrollTop: $(target).offset().top}, 500, function() {scrolling = false;});
+		}
+	</script>
+	
+	<head>
+		<title>Portfolio</title>
+		
+		<style>
+			/* METRO CSS */
+			
+			.metro { position: relative; }
+			.metro .tile { overflow: hidden; }
+			
+			.tile.small { position: relative; width: 200px; height: 200px; margin: 5px; background-color: black; overflow: hidden; }
+			.tile.small:hover > img { opacity: 0.5; }
+			.tile.small:hover > .tags { opacity: 1.0; }
+			.tile.small:active { width: 190px; height: 190px; margin: 10px 10px 15px 10px; top: 5px; }
+			.tile.small:active > img { max-width: 190px; opacity: 0.2;}
+			.tile.small:active > span { opacity: 0.0 !important; }
+			
+			.tile.small img { max-width: 200px; opacity: 0.85; }
+			.tile.small .name { position: absolute; top: 155px; left: 10px; color: white; font-size: 18px; }
+			.tile.small .sub { position: absolute; top: 175px; left: 10px; color: white; font-size: 10px; }
+			.tile.small .tags { position: absolute; top: 10px; left: 10px; color: white; font-size: 18px; opacity: 0.0; }
+			
+			.tile.small.dark span { color: #000000; }
+			
+			.tile.medium { position: relative; width: 410px; height: 200px; margin: 5px; background-color: black; overflow: hidden; }
+			.tile.medium:hover > img { opacity: 0.5; }
+			.tile.medium:hover > .tags { opacity: 1.0; }
+			.tile.medium:active { width: 400px; height: 190px; margin: 5px 10px 15px 10px; top: 5px; }
+			.tile.medium:active > img { max-width: 400px; opacity: 0.2; }
+			.tile.medium:active > span { opacity: 0.0 !important; }
+			
+			.tile.medium img { max-width: 410px; opacity: 0.85; }
+			.tile.medium .name { position: absolute; top: 155px; left: 10px; color: white; font-size: 18px; }
+			.tile.medium .sub { position: absolute; top: 175px; left: 10px; color: white; font-size: 10px; }
+			.tile.medium .tags { position: absolute; top: 10px; left: 10px; color: white; font-size: 18px; opacity: 0.0; }
+			
+			.tile.medium.dark span { color: #000000; }
+			
+			.tile.large { position: relative; width: 410px; height: 410px; margin: 5px; background-color: black; }
+			.tile.large:hover > img { opacity: 0.5; }
+			.tile.large:hover > .tags { opacity: 1.0; }
+			.tile.large:active { width: 400px; height: 400px; margin: 5px 10px 15px 10px; top: 5px; }
+			.tile.large:active > img { max-width: 400px; opacity: 0.2; }
+			.tile.large:active > span { opacity: 0.0 !important; }
+			
+			.tile.large img { max-width: 410px; opacity: 0.85; }
+			.tile.large .name { position: absolute; top: 365px; left: 10px; color: white; font-size: 18px; }
+			.tile.large .sub { position: absolute; top: 385px; left: 10px; color: white; font-size: 10px; }
+			.tile.large .tags { position: absolute; top: 10px; left: 10px; color: white; font-size: 18px; opacity: 0.0; }
+			
+			.tile.large.dark span { color: #000000; }
+			
+			.tile.fill { float: left; width: 200px; height: 200px; margin: 5px; }
+			
+			.box.small { position: relative; width: 200px; height: 200px; margin: 5px; background-color: #FFFFFF; border: 1px solid #BDBDBD; }
+			
+			.box.medium { position: relative; width: 410px; height: 200px; margin: 5px; background-color: #FFFFFF; border: 1px solid #BDBDBD; }
+			
+			.box.large { position: relative; width: 410px; height: 410px; margin: 5px; background-color: #FFFFFF; border: 1px solid #BDBDBD; }
+			
+			/* MEDIA QUERIES */
+			
+			@media screen and (min-width: 1280px) and (max-width: 1365px) {
+			}
+			@media screen and (min-width: 1366px) and (max-width: 1679px) {
+			}
+			@media screen and (min-width: 1680px) {
+				
+			}
+			
+			@media screen and (min-height: 720px) and (max-height: 899px) {
+			}
+			@media screen and (min-height: 900px) and (max-height: 1049px) {
+			}
+			@media screen and (min-height: 1050px) {
+			}
+			
+			/* GLOBAL CSS */
+			
+			::-webkit-scrollbar { 
+				display: none; 
+			}
+		
+			html, body { font-family: 'Open Sans', sans-serif; font-weight: 300; margin: 0; overflow-x: hidden; }
+			
+			.section { position: relative; width: 100%; top: 0px; }
+			.container { width: 1000px; margin-left: auto; margin-right: auto; }
+			.container * { float: left; }
+			
+			#home { height: 800px; }
+			#about { height: 725px; border-top: 50px solid #FFFFFF; background-color: rgba(0, 0, 0, 0.8); color: #FFFFFF; }
+			#work { height: 550px; background-color: #3498db; color: white; }
+			#skills { height: 800px; padding: 5px 15px 5px 15px; background-color: rgba(0, 0, 0, 0.8); color: #FFFFFF; }
+			#projects { height: 600px; background-color: #1abc9c; }
+			#contact { height: 550px; background-color: rgba(0, 0, 0, 0.8); }
+			
+			/* HOME */
+			
+			#welcome { position: absolute; left: 50px; bottom: 50px; width: 1050px; height: 630px; color: black; }
+			#welcome .tile.small { background-color: #FFFFFF; border: none; text-align: center; font: 150px/200px 'Open Sans', sans-serif; }	
+			#homebg { position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; background-image: URL('assets/bg.jpeg'); background-attachment: scroll; background-position: -100px -100px; }
+			
+			/* ABOUT */
+			
+			#about .container .hi { width: 980px; padding: 5px; }
+			#about .container .hi img { height: 250px; padding: 25px; }
+			#about .container .hi .hicontainer { width: 680px; height: 250px; padding-top: 50px;}
+			#about .container .hi .hicontainer span { font-size: 35px; line-height: 50px; }
+			#about .container .hi .hicontainer .name { font-size: 100px; line-height: 90px; }
+			#about .container .hi .hicontainer #am { color: #BDBDBD; float: none; }
+			#about .container .list .label { width: 150px; text-align: right; padding-right: 10px; font-weight: 400;}
+			#about .container .list .content { width: 820px; padding-left: 10px; border-left: 2px solid #FFFFFF; margin-bottom: 20px; }
+			#about .container .list .content p { margin-top: 0px; float: none; }
+			
+			/* WORK */
+
+			#work .container img.large { height: 250px; float: left; margin: 25px; }
+			#work .container img.small { height: 150px; float: left; margin: 25px 75px 25px 75px; }
+			#work .container div  p { margin-top: 0px; float: none; }
+			#work .container div.large { width: 700px; height: 220px; padding-top: 80px; }
+			#work .button { float: left; width: 100%; height: 50px; background-color: #2980b9; text-align: center; font-size: 20px; line-height: 50px; color: white; }
+		
+			/* SKILLS */
+			
+			#skills .title { width: 95%; margin-left: auto; margin-right: auto; font-size: 50px; }
+			#skills .metro { width: 95%; margin-left: auto; margin-right: auto; font-weight: 400; }
+			
+			/* PROJECTS */
+			
+			#projects .container { height: 500px; }
+			#projects .container .title { width: 1000px; height: 50px; margin-top: 25px; font-size: 50px; font-weight: 400; text-align: center; }
+			#projects .container .desc { width: 1000px; height: 20px; margin-top: 25px; font-size: 20px; text-align: center; }
+			#projects .container .metrocontainer { width: 1000px; padding: 25px 0 25px 0; }
+			#projects .container .metrocontainer .metro { width: 840px; font-weight: 400; float: none; margin-left: auto; margin-right: auto; }
+			#projects .button { float: left; width: 100%; height: 50px; background-color: #16a085; text-align: center; font-size: 20px; line-height: 50px; color: #000000; }
+		
+			/* CONTACT */
+			
+			#contact .container .list { padding-top: 25px; }
+			#contact .container .list .label { width: 150px; text-align: right; padding-right: 10px; font-weight: 400;}
+			#contact .container .list .content { width: 820px; padding-left: 10px; border-left: 2px solid #FFFFFF; margin-bottom: 20px; font-size: 18px;}
+			#contact .container .list .content p { margin-top: 0px; float: none; }
+			#contact .container .list .content a { float: none; text-decoration: none; border-bottom: 1px dotted #FFFFFF; color: white; font-size: 18px; }
+		</style>
+	</head>
+	
+	<body>
+		<div class = "section" id = "home">
+			<div id = "homebg"></div>
+			<div class = "metro" id = "welcome">
+				<div class = "tile small">F</div>
+				<div class = "tile small">A</div>
+				<div class = "tile small last">N</div>
+				
+				<div class = "tile small">Z</div>
+				<div class = "tile small">H</div>
+				<div class = "tile small">A</div>
+				<div class = "tile small">N</div>
+				<div class = "tile small last">G</div>
+				
+				<div class = "tile small" style = "font: 15px/200px 'Open Sans', sans-serif;" onclick = "scrollTo('#about')">ABOUT</div>
+				<div class = "tile small" style = "font: 15px/200px 'Open Sans', sans-serif;" onclick = "window.open('http://google.ca')">PROJECTS</div>
+				<div class = "tile small" style = "font: 15px/200px 'Open Sans', sans-serif;" onclick = "window.open('http://google.ca')">BLOG</div>
+				<div class = "tile small" style = "font: 15px/200px 'Open Sans', sans-serif;" onclick = "window.open('http://ca.linkedin.com/pub/fan-zhang/88/992/b/')">LINKEDIN</div>
+				<div class = "tile small" style = "font: 15px/200px 'Open Sans', sans-serif;" onclick = "scrollTo('#contact')" >CONTACT</div>
+			</div>
+		</div>
+		<div class = "section" id = "about">
+			<div class = "container">
+				<div class = "hi">
+					<img src = "actualassets/pic1.png">
+					<div class = "hicontainer">
+						<span>Hi, my name is</span><br>
+						<span class = "name">Fan Zhang</span><br>
+						<span>I am <span id = "am">an undergraduate engineering student.</span></span>
+					</div>
+				</div>
+				<div class = "list">
+					<div class = "label">STATUS</div>
+					<div class = "content"><p>Currently on second (of six) coop terms working at National Defence in Ottawa, Canada.</p>Available for hire for next coop term starting in May 2015.</div>
+				
+					<div class = "label">EDUCATION</div>
+					<div class = "content"><p>Graduated from Halifax West High School in 2013 with overall average in top six.</p>Currently in undergraduate second year studies in Mechatronics Engineering at University of Waterloo.</div>
+				
+					<div class = "label">INTERESTS</div>
+					<div class = "content"><p>Video Games, lots and lots of video games.</p><p>Anime. Gundam and Mecha animes are the reason I'm an engineer.</p><p>Hackathons.</p><p>Quirky and random projects.<p></p>UI/UX design.</div>
+				</div>
+			</div>
+		</div>
+		<div class = "section" id = "work">
+			<div class = "container">
+				<img src = "actualassets/dnd.png" class = "large">
+				<div class = "large"><p>CURRENT EMPLOYER</p><p style = "font-size: 30px; margin-bottom: 0px;">Department of National Defence</p><p>Center for Operational Research and Analysis</p>Visual Analytics Software Developer</div>
+				<img src = "actualassets/ericsson.png" class = "small"><br>
+				<div style = "width: 700px; height: 150px; padding-top: 40px; color: white;"><p style = "font-size: 30px; margin-bottom: 0px;">Ericsson</p><p>WiFi Software Product Development Unit</p>Software Designer</div>
+			</div>
+			<a href = "http://google.ca" target="_blank"><div class = "button">SEE FULL RESUME</div></a>
+		</div>
+		<div class = "section" id = "skills">
+			<div class = "title">SKILLSET</div>
+			<div class = "metro">
+				<div class = "tile small" onclick = "expand('klk.html', this)">
+					<img src = "assets/klk.jpg">
+					<span class = "name">Kill la Kill Soundtrack</span>
+					<span class = "sub">Music | 10.26.14</span>
+					<span class = "tags">anime klk killlakill music soundtrack epic</span>
+				</div>
+				<div class = "tile medium" onclick = "expand('klk.html', this)">
+					<img src = "assets/gc.png">
+					<span class = "name">The Everlasting Guilty Crown</span>
+					<span class = "sub">Music | 10.26.14</span>
+					<span class = "tags">anime guilty crown opening egoist</span>
+				</div>
+				<div class = "tile large dark" onclick = "expand('klk.html', this)">
+					<img src = "assets/az.jpg">
+					<span class = "name">A/Z</span>
+					<span class = "sub">Music | 10.26.14</span>
+					<span class = "tags">anime aldnoah zero opening</span>
+				</div>
+				<div class = "tile small" onclick = "expand('klk.html', this)">
+					<img src = "assets/aot.jpg">
+					<span class = "name">Attack on Titan</span>
+					<span class = "sub">Anime | 10.26.14</span>
+					<span class = "tags">anime attack on titan aot</span>
+				</div>
+				<div class = "tile small" onclick = "expand('klk.html', this)">
+					<img src = "assets/g00.jpg">
+					<span class = "name">Gundam 00</span>
+					<span class = "sub">Anime | 10.27.14</span>
+					<span class = "tags">anime gundam 00</span>
+				</div>
+				<div class = "tile medium" onclick = "expand('klk.html', this)">
+					<img src = "assets/mgs5.jpg">
+					<span class = "name">Metal Gear Solid 5</span>
+					<span class = "sub">Games | 10.27.14</span>
+					<span class = "tags">games metal gear solid 5 mgs5 new</span>
+				</div>
+				<div class = "tile medium" onclick = "expand('klk.html', this)">
+					<img src = "assets/ahri.jpg">
+					<span class = "name">New Ahri Splash Art</span>
+					<span class = "sub">Games | 10.27.14</span>
+					<span class = "tags">games league of legends lol spash art ahri new</span>
+				</div>
+				<div class = "tile small" onclick = "expand('klk.html', this)">
+					<img src = "assets/asuka.jpg">
+					<span class = "name">World Cup Fan Art</span>
+					<span class = "sub">Art | 10.27.14</span>
+					<span class = "tags">world cup soccer fan art asuka neon genesis evangelion nge</span>
+				</div>
+				<div class = "tile small" onclick = "expand('klk.html', this)">
+					<img src = "assets/dtb.jpg">
+					<span class = "name">Darker Than Black</span>
+					<span class = "sub">Anime | 10.27.14</span>
+					<span class = "tags">anime darker than black dtb</span>
+				</div>
+			</div>
+		</div>
+		<div class = "section" id = "projects">
+			<div class = "container">
+				<div class = "title">PROJECTS</div>
+				<div class = "desc">I like projects, the weirder the better. Here are some of the ones I've worked on.</div>
+				<div class = "metrocontainer">
+					<div class = "metro">
+						<div class = "tile large" onclick = "expand('klk.html', this)">
+							<img src = "assets/klk.jpg">
+							<span class = "name">Kill la Kill Soundtrack</span>
+							<span class = "sub">Music | 10.26.14</span>
+							<span class = "tags">anime klk killlakill music soundtrack epic</span>
+						</div>
+						<div class = "tile large dark" onclick = "expand('klk.html', this)">
+							<img src = "assets/az.jpg">
+							<span class = "name">A/Z</span>
+							<span class = "sub">Music | 10.26.14</span>
+							<span class = "tags">anime aldnoah zero opening</span>
+						</div>
+						<div class = "tile large" onclick = "expand('klk.html', this)">
+							<img src = "assets/asuka.jpg">
+							<span class = "name">World Cup Fan Art</span>
+							<span class = "sub">Art | 10.27.14</span>
+							<span class = "tags">world cup soccer fan art asuka neon genesis evangelion nge</span>
+						</div>
+						<div class = "tile large" onclick = "expand('klk.html', this)">
+							<img src = "assets/dtb.jpg">
+							<span class = "name">Darker Than Black</span>
+							<span class = "sub">Anime | 10.27.14</span>
+							<span class = "tags">anime darker than black dtb</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a href = "http://google.ca" target="_blank"><div class = "button">SEE ALL PROJECTS</div></a>
+		</div>
+		<div class = "section" id = "contact">
+			<div class = "container" style = "color: white;">
+				<div style = "width: 1000px; text-align: center; color: white; font-size: 50px; padding-top: 25px; height: 50px;">CONTACT ME</div>
+				<div class = "list">
+					<div class = "label">EMAIL</div>
+					<div class = "content">
+						<p>For professional inquiries (such as hiring me!) please contact me at <a href = "mailto:f58zhang@uwaterloo.ca">f58zhang@uwaterloo.ca</a>.</p>
+						   For all other inquiries you can find me at <a href = "mailto:fanwashere@gmail.com">fanwashere@gmail.com</a>.</div>
+				
+					<div class = "label">PHONE</div>
+					<div class = "content"><p>226 868 5000</p>Call me. Text me. Leave a voicemail. Don't worry, I have unlimited.</div>
+					
+					<div class = "label">SKYPE</div>
+					<div class = "content">fanwashere</div>
+					
+					<div class = "label">ON THE INTERNET</div>
+					<div class = "content">
+						<p><a href = "http://github.com/fanwashere" target = "_blank">Github</a></p>
+						<p><a href = "http://ca.linkedin.com/pub/fan-zhang/88/992/b/" target = "_blank">LinkedIn</a></p>
+						<p><a href = "http://facebook.com/fanwashere" target = "_blank">Facebook</a></p>
+						   <a href = "http://twitter.com/@fanwashere" target = "_blank">Twitter</a>
+					</div>
+				</div>
+				<div style = "width: 1000px; text-align: center; color: white; font-size: 10px; padding-top: 25px; height: 10px;">Background from film 5 Centimeters Per Second</div>
+			</div>
+		</div>
+	</body>
+	
+	<script>
+		am = ["an undergratuate engineering student.", "an amateur web designer.", "a League of Legends player.", "an otaku."];
+		amCur = 0;
+		
+		setInterval(function() {
+			$("#am").animate({opacity: "0"}, function() {$("#am").text(am[amCur]);});
+			$("#am").animate({opacity: "1"});
+			if (amCur == 3) {
+				amCur = 0;
+			}
+			else {
+				amCur++;
+			}
+		}, 2500);
+		
+		$(document).ready(function() {
+			metrofy();
+			
+			$('#home').css({height: $(window).height() + "px"});
+			
+			$('#skills').css({height: $("#skills .metro").height() + 80 + "px"});
+			$('#skills .title').css({width: $("#skills .metro").width() - 10 + "px"});
+			
+			$('#projects').css({height: $("#projects .container .metrocontainer .metro").height() + 220 + "px"});
+			
+			$('#home').mousemove(function(event) {
+			var amountMovedX = (event.pageX * -1 / 20) - 100;
+			var amountMovedY = (event.pageY * -1 / 20) - 100;
+			$('#homebg').css('background-position', amountMovedX + 'px ' + amountMovedY + 'px');
+			});
+		});
+	</script>
+</html>
